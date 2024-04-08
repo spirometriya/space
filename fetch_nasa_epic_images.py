@@ -20,14 +20,22 @@ def fetch_nasa_epics(api_key):
     response.raise_for_status()
     urls = []
     for r in response.json():
-        urls.append(template_img_url.format(*parse_string_date(r.get("date")), r.get("image")))
+        urls.append(
+            template_img_url.format(*parse_string_date(r.get("date")), r.get("image"))
+        )
     for url_number, url in enumerate(urls):
         extension = common.get_file_extension(url)
-        common.download_picture(url, common.image_folder, f"nasa_epic_{url_number}{extension}", api_key)
+        common.download_picture(
+            url, common.image_folder, f"nasa_epic_{url_number}{extension}", api_key
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     load_dotenv()
     Path(common.image_folder).mkdir(parents=True, exist_ok=True)
     nasa_apy_key = os.environ["NASA_API_KEY"]
-    fetch_nasa_epics(nasa_apy_key)
+    try:
+        fetch_nasa_epics(nasa_apy_key)
+        print("EPIC images have been downloaded")
+    except requests.HTTPError:
+        print("Failed to download EPIC images")

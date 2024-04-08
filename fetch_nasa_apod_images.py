@@ -14,11 +14,17 @@ def fetch_nasa_apods(api_key):
     urls = [apod.get("url") for apod in response.json()]
     for url_number, url in enumerate(urls):
         extension = common.get_file_extension(url)
-        common.download_picture(url, common.image_folder, f"nasa_apod_{url_number}{extension}")
+        common.download_picture(
+            url, common.image_folder, f"nasa_apod_{url_number}{extension}"
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     load_dotenv()
     Path(common.image_folder).mkdir(parents=True, exist_ok=True)
     nasa_apy_key = os.environ["NASA_API_KEY"]
-    fetch_nasa_apods(nasa_apy_key)
+    try:
+        fetch_nasa_apods(nasa_apy_key)
+        print("APOD images have been downloaded")
+    except requests.HTTPError:
+        print("Failed to download APOD images")
