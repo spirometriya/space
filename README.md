@@ -1,4 +1,4 @@
-# Download and post images of space
+# Space Telegram
 The script allows you to download photos of space from several web service APIs and post them to the telegram group. 
 
 # How to start
