@@ -39,20 +39,20 @@ Launch on Linux or Windows as simple
 ```bash
 $ python fetch_spacex_images.py
 
-# Photos from latest SpaceX launch will be downloaded to the "Images" directory of the project
+# Photos from latest SpaceX launch will be downloaded to the "images" directory of the project
 # You will see
 
 $ python fetch_spacex_images.py
 SpaceX images have been downloaded
 
-# if you want to upload photos of a particular launch, you must specify its ID using a key, for example:
+# if you want to download photos of a particular launch, you must specify its ID using a key, for example:
 $ python fetch_spacex_images.py -id 5eb87d42ffd86e000604b384
 ```
 
 ```bash
 $ python fetch_nasa_apod_images.py  
 
-# 30 Astronomy Picture of the Day will be downloaded to the "Images" directory of the project
+# 30 Astronomy Picture of the Day will be downloaded to the "images" directory of the project
 # You will see
 
 $ python fetch_nasa_apod_images.py
