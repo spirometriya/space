@@ -1,5 +1,6 @@
 import argparse
 import os
+import requests
 import telegram
 import fetch_image_utils as common
 from dotenv import load_dotenv
@@ -16,7 +17,11 @@ if __name__ == "__main__":
     filename = args.filename
     if common.check_file_size(filename):
         bot = telegram.Bot(token=os.environ["TELEGRAM_TOKEN"])
-        bot.send_document(
-            chat_id=os.environ["CHAT_ID"],
-            document=open(f"{common.image_folder}{filename}", "rb"),
-        )
+        try:
+            bot.send_document(
+                chat_id=os.environ["CHAT_ID"],
+                document=open(f"{common.image_folder}{filename}", "rb"),
+            )
+            print("The image has been successfully posted in telegram")
+        except requests.HTTPError:
+            print("There was an error when posting an image in telegram")

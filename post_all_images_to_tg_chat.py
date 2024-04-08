@@ -1,6 +1,7 @@
 import argparse
 import os
 import random
+import requests
 import telegram
 import time
 import fetch_image_utils as common
@@ -21,9 +22,13 @@ if __name__ == "__main__":
             random.shuffle(images)
             posted_images = set()
         for image in images:
-            bot.send_document(
-                chat_id=os.environ["CHAT_ID"],
-                document=open(f"{common.image_folder}{image}", "rb"),
-            )
-            posted_images.add(image)
+            try:
+                bot.send_document(
+                    chat_id=os.environ["CHAT_ID"],
+                    document=open(f"{common.image_folder}{image}", "rb"),
+                )
+                print("The image has been successfully posted in telegram")
+                posted_images.add(image)
+            except requests.HTTPError:
+                print("There was an error when posting an image in telegram")
         time.sleep(float(step) * 3600)
