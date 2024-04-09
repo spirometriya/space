@@ -8,7 +8,7 @@ NASA_APOD_URL = "https://api.nasa.gov/planetary/apod"
 IMAGE_COUNT = 30
 
 
-def fetch_nasa_apods(api_key):
+def main(api_key):
     payload = {"api_key": api_key, "count": IMAGE_COUNT}
     response = requests.get(NASA_APOD_URL, params=payload)
     response.raise_for_status()
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
     nasa_apy_key = os.environ["NASA_API_KEY"]
     try:
-        fetch_nasa_apods(nasa_apy_key)
+        main(nasa_apy_key)
         print("APOD images have been downloaded")
     except requests.HTTPError:
         print("Download error - check the validity of NASA API key")

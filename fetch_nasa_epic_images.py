@@ -13,7 +13,7 @@ def parse_string_date(date):
     return parsed_date.split(",")
 
 
-def fetch_nasa_epics(api_key):
+def main(api_key):
     image_url_template = "https://api.nasa.gov/EPIC/archive/natural/{}/{}/{}/png/{}.png"
     payload = {"api_key": api_key}
     response = requests.get(NASA_EPIC_URL, params=payload)
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
     nasa_apy_key = os.environ["NASA_API_KEY"]
     try:
-        fetch_nasa_epics(nasa_apy_key)
+        main(nasa_apy_key)
         print("EPIC images have been downloaded")
     except requests.HTTPError:
         print("Download error - check the validity of NASA API key")

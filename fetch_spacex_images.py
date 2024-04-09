@@ -6,7 +6,7 @@ from pathlib import Path
 SPACEX_API_URL = "https://api.spacexdata.com/v5/launches/"
 
 
-def fetch_spacex_last_launch(launch_id):
+def main(launch_id):
     response = requests.get(f"{SPACEX_API_URL}{launch_id}")
     response.raise_for_status()
     urls = response.json().get("links").get("flickr").get("original")
@@ -23,5 +23,5 @@ if __name__ == "__main__":
     parser.add_argument("-id", help="Any launch ID", default="latest")
     args = parser.parse_args()
     launch_id = args.id
-    fetch_spacex_last_launch(launch_id)
+    main(launch_id)
     print("SpaceX images have been downloaded")
