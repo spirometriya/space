@@ -30,13 +30,14 @@ if __name__ == "__main__":
             random.shuffle(images)
             posted_images = set()
         for image in images:
-            try:
-                bot.send_document(
-                    chat_id=chat_id,
-                    document=open(f"{common.IMAGE_FOLDER}{image}", "rb"),
-                )
-                print("The image has been successfully posted to telegram")
-                posted_images.add(image)
-            except requests.HTTPError:
-                print("Post image error - check the validity of token and chat-id")
+            with open(f"{common.IMAGE_FOLDER}{image}", "rb") as file:
+                try:
+                    bot.send_document(
+                        chat_id=chat_id,
+                        document=file,
+                    )
+                    print("The image has been successfully posted to telegram")
+                    posted_images.add(image)
+                except requests.HTTPError:
+                    print("Post image error - check the validity of token and chat-id")
         time.sleep(step * 3600)

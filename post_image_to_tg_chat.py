@@ -20,11 +20,11 @@ if __name__ == "__main__":
     filename = args.filename
     if common.check_file_size(filename):
         bot = telegram.Bot(token=os.environ["TELEGRAM_TOKEN"])
-        try:
-            bot.send_document(
-                chat_id=os.environ["TELEGRAM_CHAT_ID"],
-                document=open(f"{common.IMAGE_FOLDER}{filename}", "rb"),
-            )
-            print("The image has been successfully posted in telegram")
-        except requests.HTTPError:
-            print("Post image error - check the validity of token and chat-id")
+        with open(f"{common.IMAGE_FOLDER}{filename}", "rb") as file:
+            try:
+                bot.send_document(
+                    chat_id=os.environ["TELEGRAM_CHAT_ID"], document=file
+                )
+                print("The image has been successfully posted in telegram")
+            except requests.HTTPError:
+                print("Post image error - check the validity of token and chat-id")
