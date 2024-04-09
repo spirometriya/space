@@ -19,9 +19,9 @@ def fetch_nasa_epics(api_key):
     response = requests.get(NASA_EPIC_URL, params=payload)
     response.raise_for_status()
     urls = []
-    for r in response.json():
+    for epic_image in response.json():
         urls.append(
-            image_url_template.format(*parse_string_date(r.get("date")), r.get("image"))
+            image_url_template.format(*parse_string_date(epic_image.get("date")), epic_image.get("image"))
         )
     for url_number, url in enumerate(urls):
         extension = common.get_file_extension(url)
