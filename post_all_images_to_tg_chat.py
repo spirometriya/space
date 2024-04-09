@@ -31,7 +31,7 @@ if __name__ == "__main__":
         for image in images:
             try:
                 bot.send_document(
-                    chat_id=os.environ["CHAT_ID"],
+                    chat_id=os.environ["TELEGRAM_CHAT_ID"],
                     document=open(f"{common.IMAGE_FOLDER}{image}", "rb"),
                 )
                 print("The image has been successfully posted to telegram")

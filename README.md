@@ -13,14 +13,14 @@ pip install -r requirements.txt
 
 - NASA_API_KEY
 - TELEGRAM_TOKEN
-- CHAT_ID
+- TELEGRAM_CHAT_ID
 
 .env example:
 
 ```
 NASA_API_KEY = "d9a2CFUHACuPIoqp53OISBXID9dQL0JPtZixbVTd"
 TELEGRAM_TOKEN = "6417806071:5pAcwh9SoNqJAHsIUOsU7JbJ6MEXcKf1uUB"
-CHAT_ID = "@dvmn_space_images"
+TELEGRAM_CHAT_ID = "@dvmn_space_images"
 ```
 ### How to get
 

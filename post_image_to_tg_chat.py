@@ -21,7 +21,7 @@ if __name__ == "__main__":
         bot = telegram.Bot(token=os.environ["TELEGRAM_TOKEN"])
         try:
             bot.send_document(
-                chat_id=os.environ["CHAT_ID"],
+                chat_id=os.environ["TELEGRAM_CHAT_ID"],
                 document=open(f"{common.IMAGE_FOLDER}{filename}", "rb"),
             )
             print("The image has been successfully posted in telegram")
