@@ -14,14 +14,14 @@ def parse_string_date(date):
 
 
 def fetch_nasa_epics(api_key):
-    template_img_url = "https://api.nasa.gov/EPIC/archive/natural/{}/{}/{}/png/{}.png"
+    image_url_template = "https://api.nasa.gov/EPIC/archive/natural/{}/{}/{}/png/{}.png"
     payload = {"api_key": api_key}
     response = requests.get(NASA_EPIC_URL, params=payload)
     response.raise_for_status()
     urls = []
     for r in response.json():
         urls.append(
-            template_img_url.format(*parse_string_date(r.get("date")), r.get("image"))
+            image_url_template.format(*parse_string_date(r.get("date")), r.get("image"))
         )
     for url_number, url in enumerate(urls):
         extension = common.get_file_extension(url)
