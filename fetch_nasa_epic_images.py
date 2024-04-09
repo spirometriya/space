@@ -38,4 +38,4 @@ if __name__ == "__main__":
         fetch_nasa_epics(nasa_apy_key)
         print("EPIC images have been downloaded")
     except requests.HTTPError:
-        print("Failed to download EPIC images")
+        print("Download error - check the validity of NASA API key")

@@ -23,8 +23,5 @@ if __name__ == "__main__":
     parser.add_argument("-id", help="Any launch ID", default="latest")
     args = parser.parse_args()
     launch_id = args.id
-    try:
-        fetch_spacex_last_launch(launch_id)
-        print("SpaceX images have been downloaded")
-    except requests.HTTPError:
-        print("Failed to download SpaceX images")
+    fetch_spacex_last_launch(launch_id)
+    print("SpaceX images have been downloaded")

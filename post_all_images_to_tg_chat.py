@@ -27,8 +27,8 @@ if __name__ == "__main__":
                     chat_id=os.environ["CHAT_ID"],
                     document=open(f"{common.IMAGE_FOLDER}{image}", "rb"),
                 )
-                print("The image has been successfully posted in telegram")
+                print("The image has been successfully posted to telegram")
                 posted_images.add(image)
             except requests.HTTPError:
-                print("There was an error when posting an image in telegram")
+                print("Post image error - check the validity of token and chat-id")
         time.sleep(float(step) * 3600)

@@ -24,4 +24,4 @@ if __name__ == "__main__":
             )
             print("The image has been successfully posted in telegram")
         except requests.HTTPError:
-            print("There was an error when posting an image in telegram")
+            print("Post image error - check the validity of token and chat-id")
