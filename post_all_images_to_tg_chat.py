@@ -15,6 +15,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "-step",
+        type=float,
         help="Specify the number of hours after which the script will be restarted (optional, default=4)",
         default=4,
     )
@@ -37,4 +38,4 @@ if __name__ == "__main__":
                 posted_images.add(image)
             except requests.HTTPError:
                 print("Post image error - check the validity of token and chat-id")
-        time.sleep(float(step) * 3600)
+        time.sleep(step * 3600)
