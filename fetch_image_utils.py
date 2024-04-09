@@ -4,6 +4,7 @@ import os
 from urllib.parse import urlparse, unquote
 
 IMAGE_FOLDER = f"{os.getcwd()}\\images\\"
+MAX_FILE_SIZE = 20000000
 
 
 def get_file_extension(url):
@@ -32,5 +33,5 @@ def get_random_image():
 
 def check_file_size(filename):
     file_size = os.path.getsize(f"{IMAGE_FOLDER}{filename}")
-    if file_size < 20000000:
+    if file_size < MAX_FILE_SIZE:
         return True

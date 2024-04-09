@@ -5,10 +5,11 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 NASA_APOD_URL = "https://api.nasa.gov/planetary/apod"
+IMAGE_COUNT = 30
 
 
 def fetch_nasa_apods(api_key):
-    payload = {"api_key": api_key, "count": "30"}
+    payload = {"api_key": api_key, "count": IMAGE_COUNT}
     response = requests.get(NASA_APOD_URL, params=payload)
     response.raise_for_status()
     urls = [apod.get("url") for apod in response.json()]
