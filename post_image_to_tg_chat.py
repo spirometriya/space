@@ -20,7 +20,7 @@ if __name__ == "__main__":
         try:
             bot.send_document(
                 chat_id=os.environ["CHAT_ID"],
-                document=open(f"{common.image_folder}{filename}", "rb"),
+                document=open(f"{common.IMAGE_FOLDER}{filename}", "rb"),
             )
             print("The image has been successfully posted in telegram")
         except requests.HTTPError:

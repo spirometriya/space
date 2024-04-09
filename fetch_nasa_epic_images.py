@@ -26,13 +26,13 @@ def fetch_nasa_epics(api_key):
     for url_number, url in enumerate(urls):
         extension = common.get_file_extension(url)
         common.download_picture(
-            url, common.image_folder, f"nasa_epic_{url_number}{extension}", api_key
+            url, common.IMAGE_FOLDER, f"nasa_epic_{url_number}{extension}", api_key
         )
 
 
 if __name__ == "__main__":
     load_dotenv()
-    Path(common.image_folder).mkdir(parents=True, exist_ok=True)
+    Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
     nasa_apy_key = os.environ["NASA_API_KEY"]
     try:
         fetch_nasa_epics(nasa_apy_key)

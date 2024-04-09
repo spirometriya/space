@@ -13,12 +13,12 @@ def fetch_spacex_last_launch(launch_id):
     for url_number, url in enumerate(urls):
         extension = common.get_file_extension(url)
         common.download_picture(
-            url, common.image_folder, f"spacex_{url_number}{extension}"
+            url, common.IMAGE_FOLDER, f"spacex_{url_number}{extension}"
         )
 
 
 if __name__ == "__main__":
-    Path(common.image_folder).mkdir(parents=True, exist_ok=True)
+    Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser()
     parser.add_argument("-id", help="Any launch ID", default="latest")
     args = parser.parse_args()
