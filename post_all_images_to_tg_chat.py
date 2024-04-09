@@ -23,12 +23,9 @@ if __name__ == "__main__":
     step = args.step
     bot = telegram.Bot(token=os.environ["TELEGRAM_TOKEN"])
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
-    posted_images = set()
     while True:
         images = common.get_valid_images()
-        if set(images) == posted_images:
-            random.shuffle(images)
-            posted_images = set()
+        random.shuffle(images)
         for image in images:
             with open(f"{common.IMAGE_FOLDER}{image}", "rb") as file:
                 try:
@@ -37,7 +34,6 @@ if __name__ == "__main__":
                         document=file,
                     )
                     print("The image has been successfully posted to telegram")
-                    posted_images.add(image)
                 except requests.HTTPError:
                     print("Post image error - check the validity of token and chat-id")
         time.sleep(step * 3600)
