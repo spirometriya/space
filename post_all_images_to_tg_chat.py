@@ -22,6 +22,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     step = args.step
     bot = telegram.Bot(token=os.environ["TELEGRAM_TOKEN"])
+    chat_id = os.environ["TELEGRAM_CHAT_ID"]
     posted_images = set()
     while True:
         images = common.get_list_of_images()
@@ -31,7 +32,7 @@ if __name__ == "__main__":
         for image in images:
             try:
                 bot.send_document(
-                    chat_id=os.environ["TELEGRAM_CHAT_ID"],
+                    chat_id=chat_id,
                     document=open(f"{common.IMAGE_FOLDER}{image}", "rb"),
                 )
                 print("The image has been successfully posted to telegram")
