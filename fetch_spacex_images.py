@@ -19,8 +19,14 @@ def main(launch_id):
 
 if __name__ == "__main__":
     Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-id", help="Any launch ID", default="latest")
+    parser = argparse.ArgumentParser(
+        description="Downloads images of SpaceX launches to user's computer"
+    )
+    parser.add_argument(
+        "-id",
+        help="Specify the launch id to download images of this launch only (optional, default=latest)",
+        default="latest",
+    )
     args = parser.parse_args()
     launch_id = args.id
     main(launch_id)

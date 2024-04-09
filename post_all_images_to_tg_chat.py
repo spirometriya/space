@@ -10,8 +10,14 @@ from dotenv import load_dotenv
 
 if __name__ == "__main__":
     load_dotenv()
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-step", help="Script launch step (hours)", default=4)
+    parser = argparse.ArgumentParser(
+        description="Post all images to telegram from user's computer"
+    )
+    parser.add_argument(
+        "-step",
+        help="Specify the number of hours after which the script will be restarted (optional, default=4)",
+        default=4,
+    )
     args = parser.parse_args()
     step = args.step
     bot = telegram.Bot(token=os.environ["TELEGRAM_TOKEN"])

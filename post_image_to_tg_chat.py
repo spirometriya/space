@@ -7,10 +7,12 @@ from dotenv import load_dotenv
 
 if __name__ == "__main__":
     load_dotenv()
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="Post image to telegram from user's computer"
+    )
     parser.add_argument(
         "-filename",
-        help="Any name of file with extension",
+        help="Specify name of file with extension (optional, a random picture will be selected by default)",
         default=common.get_random_image(),
     )
     args = parser.parse_args()
