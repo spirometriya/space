@@ -1,4 +1,3 @@
-import random
 import requests
 import os
 from urllib.parse import urlparse, unquote
@@ -21,17 +20,12 @@ def download_picture(url, path, file_name, api_key=None):
         file.write(response.content)
 
 
-def get_images():
-    all_images = list(os.walk(IMAGE_FOLDER))[0][2]
-    return [image for image in all_images if check_file_size(image)]
-
-
-def get_random_image():
-    files = list(os.walk(IMAGE_FOLDER))[0][2]
-    return random.choice(files)
-
-
 def check_file_size(filename):
     file_size = os.path.getsize(f"{IMAGE_FOLDER}{filename}")
     if file_size < MAX_FILE_SIZE:
         return True
+
+
+def get_valid_images():
+    images = list(os.walk(IMAGE_FOLDER))[0][2]
+    return [image for image in images if check_file_size(image)]

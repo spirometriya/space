@@ -1,5 +1,6 @@
 import argparse
 import os
+import random
 import requests
 import telegram
 import fetch_image_utils as common
@@ -13,7 +14,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-filename",
         help="Specify name of file with extension (optional, a random picture will be selected by default)",
-        default=common.get_random_image(),
+        default=random.choice(common.get_valid_images()),
     )
     args = parser.parse_args()
     filename = args.filename
