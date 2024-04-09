@@ -21,7 +21,7 @@ def download_picture(url, path, file_name, api_key=None):
         file.write(response.content)
 
 
-def get_list_of_images():
+def get_images():
     all_images = list(os.walk(IMAGE_FOLDER))[0][2]
     return [image for image in all_images if check_file_size(image)]
 

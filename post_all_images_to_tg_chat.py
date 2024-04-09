@@ -25,7 +25,7 @@ if __name__ == "__main__":
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
     posted_images = set()
     while True:
-        images = common.get_list_of_images()
+        images = common.get_images()
         if set(images) == posted_images:
             random.shuffle(images)
             posted_images = set()
