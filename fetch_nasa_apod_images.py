@@ -8,7 +8,10 @@ NASA_APOD_URL = "https://api.nasa.gov/planetary/apod"
 IMAGE_COUNT = 30
 
 
-def main(api_key):
+def main():
+    load_dotenv()
+    Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
+    api_key = os.environ["NASA_API_KEY"]
     payload = {"api_key": api_key, "count": IMAGE_COUNT}
     response = requests.get(NASA_APOD_URL, params=payload)
     response.raise_for_status()
@@ -18,11 +21,8 @@ def main(api_key):
         common.download_picture(
             url, common.IMAGE_FOLDER, f"nasa_apod_{url_number}{extension}"
         )
+        print("APOD images have been downloaded")
 
 
 if __name__ == "__main__":
-    load_dotenv()
-    Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
-    nasa_apy_key = os.environ["NASA_API_KEY"]
-    main(nasa_apy_key)
-    print("APOD images have been downloaded")
+    main()

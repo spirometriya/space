@@ -13,7 +13,10 @@ def parse_string_date(date):
     return parsed_date.split(",")
 
 
-def main(api_key):
+def main():
+    load_dotenv()
+    Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
+    api_key = os.environ["NASA_API_KEY"]
     image_url_template = "https://api.nasa.gov/EPIC/archive/natural/{}/{}/{}/png/{}.png"
     payload = {"api_key": api_key}
     response = requests.get(NASA_EPIC_URL, params=payload)
@@ -30,11 +33,8 @@ def main(api_key):
         common.download_picture(
             url, common.IMAGE_FOLDER, f"nasa_epic_{url_number}{extension}", api_key
         )
+        print("EPIC images have been downloaded")
 
 
 if __name__ == "__main__":
-    load_dotenv()
-    Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
-    nasa_apy_key = os.environ["NASA_API_KEY"]
-    main(nasa_apy_key)
-    print("EPIC images have been downloaded")
+    main()
