@@ -21,7 +21,9 @@ def main(api_key):
     urls = []
     for epic_image in response.json():
         urls.append(
-            image_url_template.format(*parse_string_date(epic_image.get("date")), epic_image.get("image"))
+            image_url_template.format(
+                *parse_string_date(epic_image.get("date")), epic_image.get("image")
+            )
         )
     for url_number, url in enumerate(urls):
         extension = common.get_file_extension(url)
@@ -34,8 +36,5 @@ if __name__ == "__main__":
     load_dotenv()
     Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
     nasa_apy_key = os.environ["NASA_API_KEY"]
-    try:
-        main(nasa_apy_key)
-        print("EPIC images have been downloaded")
-    except requests.HTTPError:
-        print("Download error - check the validity of NASA API key")
+    main(nasa_apy_key)
+    print("EPIC images have been downloaded")

@@ -24,8 +24,5 @@ if __name__ == "__main__":
     load_dotenv()
     Path(common.IMAGE_FOLDER).mkdir(parents=True, exist_ok=True)
     nasa_apy_key = os.environ["NASA_API_KEY"]
-    try:
-        main(nasa_apy_key)
-        print("APOD images have been downloaded")
-    except requests.HTTPError:
-        print("Download error - check the validity of NASA API key")
+    main(nasa_apy_key)
+    print("APOD images have been downloaded")
